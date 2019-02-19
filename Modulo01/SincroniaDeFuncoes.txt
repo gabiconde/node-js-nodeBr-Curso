@@ -1,0 +1,56 @@
+Node possui uma VM (V8) que transforma o javaScript em c++ e manda para o OS resolver as operações,
+ assim que estas são resolvidas eles devolvem para o callback registrado o resultado.
+
+- As operações são enfileiradas e assim que cada uma vai sendo resolvida manda para o callback,
+elas podem ser resolvidas em tempos diferentes tornando-as assincronas
+
+- Tudo que é externo é executado em background (ler arq., consumir API, DB), 
+então devemos fazer funções que executem uma após a outra.
+
+- A ordem como o código é escrito é diferente da ordem de como é executado.
+--------------------------------------------------------------------------------------
+
+Promisses
+
+ciclo de vida:
+Pending - ainda não foi executada, esta executando
+fulfilled - quando há sucesso na execução de todas as operações
+rejected - quando a operação falha
+
+muitas funções aninhadas podem deixar confuso.
+
+--------------------------------------------------------------------------------------
+
+ASYNC/AWAIT
+
+- facilita a visualização do fluxo de funções
+- não altera a performance dependendo do momento
+- veio do C#
+- usar quando precisar tratar o resultado de uma chamada
+
+-- Pode dar problemas de paralisar o fluxo.
+
+- utilizar Promise.all([])  -> para ganhar em performance, quando as coisas n dependem do resultado umas das outras
+
+----------------------------------------------------------------------------------------
+
+EVENT EMITTER
+
+** manipular clique, arquivos ect 
+
+node funciona a base de eventos.
+
+- usado para açoes continuas (navegação em sites)
+- node utiliza çpara quase tudo no ecossistema
+- Utilizado nos browsers (.onClick)
+- Trabalha sob o design Pattern Observe/PubSub 
+            - publisher enviar mensagens para um hub, quando chega um evento ele tem uma ação
+
+** fica esperando uma alteração num evento especifico para e tomar uma decisão do que fazer.
+CUIDADO:
+    erro comum -- utilizar dentro de promise
+
+    A promise executa apenas uma vez, ja um listener é feito para ações continuas e executar toda vez q o evento ocorrer
+
+
+
