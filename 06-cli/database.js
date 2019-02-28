@@ -67,6 +67,27 @@ class Database {
         return await this.escreverArquivo(dados)
 
     }
+
+    async atualizar(id, modificacoes){
+        const dados = await this.obterDadosArquivo()
+        const indice = dados.findIndex(item => item.id === parseInt(id))
+        if(indice === -1){
+            throw Error('O heroi nao existe')
+        }
+        const atual =dados[indice]
+        //faz o merge
+        const objetoAtualizar = {
+            ...atual,
+            ...modificacoes
+        }
+        console.log('objetoAtualizar', objetoAtualizar)
+        dados.splice(indice, 1)
+        return await this.escreverArquivo([
+            ...dados,
+            objetoAtualizar
+        ])
+
+    }
 }
 
 module.exports = new Database()
