@@ -16,6 +16,7 @@ describe('Suite de manipulação de herois', () => {
         await database.cadastrar(DEFAULT_ITEM_CADASTRAR)
     })
     //it comeca com o objetivo
+
     it('Deve pesquisar herois usando arquivos', async () => {
         const expected = DEFAULT_ITEM_CADASTRAR
         //colocar o resultado entre colchetes traz a primeira posição do array
@@ -28,7 +29,6 @@ describe('Suite de manipulação de herois', () => {
     })
 
     it('deve cadastrar um heroi usando arquivos', async () => {
-       
         const expected = DEFAULT_ITEM_CADASTRAR
         // alterar o conteudo do jason 
         // const expected = {
@@ -41,5 +41,11 @@ describe('Suite de manipulação de herois', () => {
         const [actual] = await database.listar(DEFAULT_ITEM_CADASTRAR.id)
 
         deepEqual(actual, expected)
+    })
+    it('deve remover o heroi do arquivo', async () => {
+        const expected = true;
+        const resultado = await database.remover(DEFAULT_ITEM_CADASTRAR.id)
+
+        deepEqual(resultado, expected)
     })
 })
