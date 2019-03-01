@@ -5,12 +5,14 @@
   "main": "index.js",
   "scripts": {
     "test": "mocha -W"
-
   },
   "keywords": [],
   "author": "",
   "license": "ISC",
   "devDependencies": {
     "mocha": "^6.0.2"
+  },
+  "dependencies": {
+    "commander": "^2.19.0"
   }
 }
